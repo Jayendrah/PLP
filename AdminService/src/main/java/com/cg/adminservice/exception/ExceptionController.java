@@ -28,7 +28,6 @@ public class ExceptionController {
 	        errors.put("message", cv.getMessage());
 	        errors.put("path", (cv.getPropertyPath()).toString());
 	    }); 
-	 
 	    return errors;
-	}
+}
 }

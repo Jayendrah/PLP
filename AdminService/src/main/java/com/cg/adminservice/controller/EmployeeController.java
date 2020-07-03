@@ -54,12 +54,42 @@ public class EmployeeController {
 	}
 
 	
-	@PutMapping("/{empId}/{maritalStatus}")
-	public ResponseEntity<String> updateEmployee(@PathVariable("empId") Integer empId,@PathVariable("maritalStatus") String maritalStatus) throws EmployeeNotFoundException{
-		String entity = service.updateEmployeeByEmpId(empId,maritalStatus );
-		return ResponseEntity.ok(service.updateEmployeeByEmpId(empId,maritalStatus));
+	@PutMapping("/{empId}/{empFirstName}")
+	public ResponseEntity<String> updatempFirstNameByEmpId(@PathVariable("empId") Integer empId,@PathVariable("empFirstName") String empFirstName) throws EmployeeNotFoundException{
+		String entity = service.updatempFirstNameByEmpId(empId,empFirstName );
+		return ResponseEntity.ok(service.updatempFirstNameByEmpId(empId,empFirstName));
 	}
 
+	@PutMapping("/{empId}/{empLastName}")
+	public ResponseEntity<String> updatempLastNameByEmpId(@PathVariable("empId") Integer empId,@PathVariable("empLastName") String empLastName) throws EmployeeNotFoundException{
+		String entity = service.updatempLastNameByEmpId(empId,empLastName );
+		return ResponseEntity.ok(service.updatempLastNameByEmpId(empId,empLastName));
+	}
+	
+	@PutMapping("/{empId}/{empGrade}")
+	public ResponseEntity<String> updatempGradeByEmpId(@PathVariable("empId") Integer empId,@PathVariable("empGrade") String empGrade) throws EmployeeNotFoundException{
+		String entity = service.updatempGradeByEmpId(empId,empGrade );
+		return ResponseEntity.ok(service.updatempGradeByEmpId(empId,empGrade));
+	}
+	
+	@PutMapping("/{empId}/{designation}")
+	public ResponseEntity<String> updatedesignationByEmpId(@PathVariable("empId") Integer empId,@PathVariable("designation") String designation) throws EmployeeNotFoundException{
+		String entity = service.updatedesignationByEmpId(empId,designation );
+		return ResponseEntity.ok(service.updatedesignationByEmpId(empId,designation));
+	}
+	
+	@PutMapping("/{empId}/{salary}")
+	public ResponseEntity<String> updatesalaryByEmpId(@PathVariable("empId") Integer empId,@PathVariable("salary") String salary) throws EmployeeNotFoundException{
+		String entity = service.updatesalaryByEmpId(empId,salary );
+		return ResponseEntity.ok(service.updatesalaryByEmpId(empId,salary));
+	}
+
+
+	@PutMapping("/{empId}/{maritalStatus}")
+	public ResponseEntity<String> updateEmployeeMaritalStatus(@PathVariable("empId") Integer empId,@PathVariable("maritalStatus") String maritalStatus) throws EmployeeNotFoundException{
+		String entity = service.updateMaritalStatusByEmpId(empId,maritalStatus );
+		return ResponseEntity.ok(service.updateMaritalStatusByEmpId(empId,maritalStatus));
+	}
 	
 	@DeleteMapping("/{empGrade}")
 	public ResponseEntity<String> deleteAllEmployeesByEmpGrade(@PathVariable("empGrade") String empGrade) throws EmployeeNotFoundException {

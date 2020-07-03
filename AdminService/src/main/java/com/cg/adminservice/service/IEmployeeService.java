@@ -16,6 +16,17 @@ public interface IEmployeeService {
 	
 	public String deleteAllEmployeesByEmpGrade(String empGrade) throws EmployeeNotFoundException;
 
-	public String updateEmployeeByEmpId(Integer empId,String maritalStatus) throws EmployeeNotFoundException;
- 
+	public String updatempFirstNameByEmpId(Integer empId,String empFirstName) throws EmployeeNotFoundException;
+	
+	public String updatempLastNameByEmpId(Integer empId,String empFirstName) throws EmployeeNotFoundException;
+	
+	public String updatempGradeByEmpId(Integer empId,String empGrade) throws EmployeeNotFoundException;
+	
+	public String updatedesignationByEmpId(Integer empId,String designation) throws EmployeeNotFoundException;
+	
+	public String updateMaritalStatusByEmpId(Integer empId,String maritalStatus) throws EmployeeNotFoundException;
+	
+	public String updatesalaryByEmpId(Integer empId,String salary) throws EmployeeNotFoundException;
+	
+	
 }

@@ -1,12 +1,16 @@
 package com.cg.adminservice.entity;
 
+
+
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -18,12 +22,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "Employee")
+
 public class Employee {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="empid")
-	@Min(value=999999, message="Employee Id has to be six digit")
+	@Min(100000)
+	//@Max(999999)
 	@NotNull(message="Id should not be null")
 	@Positive(message="Id should be positive")
 	private Integer empId;
@@ -32,19 +38,19 @@ public class Employee {
 	@NotBlank(message="First Name should not be blank")
 	@Size(min=3, message="First Name should be atleast 3 characters")
 	private String empFirstName;
-	
+
 	@Column(name="emplastname")
 	@NotBlank(message="Last Name should not be blank")
 	@Size(min=3, message="Last Name should be atleast 3 characters")
 	private String empLastName;
 	
-	@DateTimeFormat(pattern="DD-MM-YY")
-	@Column(name="date_of_Joining")
-	private String dateofJoining;
+	//@DateTimeFormat(pattern="DD-MM-YY")
+	@Column(name="date_of_joining")
+	private LocalDate dateofJoining;
 	
-	@DateTimeFormat(pattern="DD-MM-YY")
-	@Column(name="date_of_Birth")
-	private String dateofBirth;
+	//@DateTimeFormat(pattern="DD-MM-YY")
+	@Column(name="date_of_birth")
+	private LocalDate dateofBirth;
 	
 	@Column(name="grade")
 	@NotBlank(message="Grade should not be blank")
@@ -55,7 +61,6 @@ public class Employee {
 	@Size(min=2, message="Department Name should be atleast 2 characters")
 	private String deptName;
 	
-	@Max(50)
 	@Column(name="designation")
 	private String designation;
 	
@@ -72,11 +77,12 @@ public class Employee {
 	@Column(name="home_address")
 	private String home_address;
 	
+	@Min(10)
 	@Column(name="mobile_no")
 	private String mobile_no;
 	
 	public Employee(Integer empId, String empFirstName, String empLastName, String empGrade, String deptName,
-			String maritalStatus, String date_of_Joining, String dateofBirth, String designation, String gender,String salary, String home_address, String mobile_no) {
+			String maritalStatus, LocalDate date_of_Joining, LocalDate dateofBirth, String designation, String gender,String salary, String home_address, String mobile_no) {
 		super();
 		this.empId = empId;
 		this.empFirstName = empFirstName;
@@ -115,10 +121,10 @@ public class Employee {
 	public void setEmpLastName(String empLastName) {
 		this.empLastName = empLastName;
 	}
-	public String getDateofJoining() {
+	public LocalDate getDateofJoining() {
 		return dateofJoining;
 	}
-	public void setDateofJoining(String dateofJoining) {
+	public void setDateofJoining(LocalDate dateofJoining) {
 		this.dateofJoining = dateofJoining;
 	}
 	public String getEmpGrade() {
@@ -170,10 +176,10 @@ public class Employee {
 		this.mobile_no = mobile_no;
 	}
 	
-	public String getDateofBirth() {
+	public LocalDate getDateofBirth() {
 		return dateofBirth;
 	}
-	public void setDateofBirth(String dateofBirth) {
+	public void setDateofBirth(LocalDate dateofBirth) {
 		this.dateofBirth = dateofBirth;
 	}
 	@Override
