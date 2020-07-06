@@ -3,6 +3,8 @@ package com.cg.adminservice.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import com.cg.adminservice.dao.IEmployeeRepository;
 import com.cg.adminservice.entity.Employee;
 import com.cg.adminservice.exception.EmployeeAlreadyExsistsException;
 import com.cg.adminservice.exception.EmployeeNotFoundException;
-
+@Transactional
 @Service
 public class EmployeeServiceImpl implements IEmployeeService {
 
@@ -36,34 +38,34 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		return employee;
 	}
 	
-
-	public String updatempFirstNameByEmpId(Integer empId, String empFirstname) throws EmployeeNotFoundException {
+    @Override
+	public String updatempFirstNameByEmpId(Integer empId, String empFirstName) throws EmployeeNotFoundException {
 		  Optional<Employee> optional = repository.findById(empId);
 		  Employee employee = optional.get();
-		  employee.setMaritalStatus(empFirstname);
-		  repository.save(employee);
+		  employee.setEmpFirstName(empFirstName);
+		  repository.saveAndFlush(employee);
 		  return "Employee updated Successfully";
 	 }
 	
-	public String updatempLastNameByEmpId(Integer empId, String empLastname) throws EmployeeNotFoundException {
+	public String updatempLastNameByEmpId(Integer empId, String empLastName) throws EmployeeNotFoundException {
 		  Optional<Employee> optional = repository.findById(empId);
 		  Employee employee = optional.get();
-		  employee.setMaritalStatus(empLastname);
-		  repository.save(employee);
+		  employee.setEmpLastName(empLastName);
+		  repository.saveAndFlush(employee);
 		  return "Employee updated Successfully";
 	 }
 	
 	public String updatempGradeByEmpId(Integer empId, String empGrade) throws EmployeeNotFoundException {
 		  Optional<Employee> optional = repository.findById(empId);
 		  Employee employee = optional.get();
-		  employee.setMaritalStatus(empGrade);
-		  repository.save(employee);
+		  employee.setEmpGrade(empGrade);
+		  repository.saveAndFlush(employee);
 		  return "Employee updated Successfully";
 	 }
 	public String updatedesignationByEmpId(Integer empId, String designation) throws EmployeeNotFoundException {
 		  Optional<Employee> optional = repository.findById(empId);
 		  Employee employee = optional.get();
-		  employee.setMaritalStatus(designation);
+		  employee.setDesignation(designation);
 		  repository.save(employee);
 		  return "Employee updated Successfully";
 	 }
@@ -71,8 +73,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	public String updatesalaryByEmpId(Integer empId, String salary) throws EmployeeNotFoundException {
 		  Optional<Employee> optional = repository.findById(empId);
 		  Employee employee = optional.get();
-		  employee.setMaritalStatus(salary);
-		  repository.save(employee);
+		  employee.setSalary(salary);
+		  repository.saveAndFlush(employee);
 		  return "Employee updated Successfully";
 	 }
 	
@@ -81,7 +83,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	  Optional<Employee> optional = repository.findById(empId);
 	  Employee employee = optional.get();
 	  employee.setMaritalStatus(maritalStatus);
-	  repository.save(employee);
+	  repository.saveAndFlush(employee);
 	  return "Employee updated Successfully";
 	 }
 

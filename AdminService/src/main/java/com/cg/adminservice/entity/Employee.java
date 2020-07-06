@@ -11,27 +11,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "Employee")
+//@SequenceGenerator(schema="hr",name="hibernate_sequence", initialValue=100000, allocationSize=1)
 
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="hibernate_sequence")
 	@Column(name="empid")
-	@Min(100000)
-	//@Max(999999)
-	@NotNull(message="Id should not be null")
-	@Positive(message="Id should be positive")
 	private Integer empId;
 	
 	@Column(name="empfirstname")
@@ -44,11 +37,9 @@ public class Employee {
 	@Size(min=3, message="Last Name should be atleast 3 characters")
 	private String empLastName;
 	
-	//@DateTimeFormat(pattern="DD-MM-YY")
 	@Column(name="date_of_joining")
 	private LocalDate dateofJoining;
 	
-	//@DateTimeFormat(pattern="DD-MM-YY")
 	@Column(name="date_of_birth")
 	private LocalDate dateofBirth;
 	
