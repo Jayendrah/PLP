@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -17,13 +16,10 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Employee")
-//@SequenceGenerator(schema="hr",name="hibernate_sequence", initialValue=100000, allocationSize=1)
-
 public class Employee {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="hibernate_sequence")
 	@Column(name="empid")
 	private Integer empId;
 	
@@ -52,12 +48,15 @@ public class Employee {
 	@Size(min=2, message="Department Name should be atleast 2 characters")
 	private String deptName;
 	
+	@NotBlank(message="Designation should not be blank")
 	@Column(name="designation")
 	private String designation;
 	
+	@NotBlank(message="Salary should not be blank")
 	@Column(name="salary")
 	private String salary;
 	
+	@NotBlank(message="Gender should not be blank")
 	@Column(name="gender")
 	private String gender;
 	
@@ -66,14 +65,14 @@ public class Employee {
 	private String maritalStatus;
 	
 	@Column(name="home_address")
-	private String home_address;
+	private String homeAddress;
 	
-	@Min(10)
+	@Size(min=10,max=10, message="Mobile no should be 10 digit")
 	@Column(name="mobile_no")
-	private String mobile_no;
+	private String mobileNo;
 	
 	public Employee(Integer empId, String empFirstName, String empLastName, String empGrade, String deptName,
-			String maritalStatus, LocalDate date_of_Joining, LocalDate dateofBirth, String designation, String gender,String salary, String home_address, String mobile_no) {
+			String maritalStatus, LocalDate dateofJoining, LocalDate dateofBirth, String designation, String gender,String salary, String homeAddress, String mobileNo) {
 		super();
 		this.empId = empId;
 		this.empFirstName = empFirstName;
@@ -81,13 +80,13 @@ public class Employee {
 		this.empGrade = empGrade;
 		this.deptName = deptName;
 		this.maritalStatus= maritalStatus;
-		this.dateofJoining= date_of_Joining;
+		this.dateofJoining= dateofJoining;
 		this.dateofBirth= dateofBirth;
 		this.designation=designation;
 		this.gender=gender;
 		this.salary=salary;
-		this.home_address= home_address;
-		this.mobile_no= mobile_no;
+		this.homeAddress= homeAddress;
+		this.mobileNo= mobileNo;
 		 
 	}
 	public Employee() {
@@ -154,17 +153,17 @@ public class Employee {
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
-	public String getHome_address() {
-		return home_address;
+	public String getHomeAddress() { 
+		return homeAddress;
 	}
-	public void setHome_address(String home_address) {
-		this.home_address = home_address;
+	public void setHomeAddress(String homeAddress) {
+		this.homeAddress = homeAddress;
 	}
-	public String getMobile_no() {
-		return mobile_no;
+	public String getMobileNo() {
+		return mobileNo;
 	}
-	public void setMobile_no(String mobile_no) {
-		this.mobile_no = mobile_no;
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 	
 	public LocalDate getDateofBirth() {
@@ -178,8 +177,8 @@ public class Employee {
 		return "Employee [empId=" + empId + ", empFirstName=" + empFirstName + ", empLastName=" + empLastName
 				+ ", dateofJoining=" + dateofJoining + ", dateofBirth=" + dateofBirth + ", empGrade=" + empGrade
 				+ ", deptName=" + deptName + ", designation=" + designation + ", salary=" + salary + ", gender="
-				+ gender + ", maritalStatus=" + maritalStatus + ", home_address=" + home_address + ", mobile_no="
-				+ mobile_no + "]";
+				+ gender + ", maritalStatus=" + maritalStatus + ", homeAddress=" + homeAddress + ", mobile_no="
+				+ mobileNo + "]";
 	}
 	
 	
